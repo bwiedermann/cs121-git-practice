@@ -24,6 +24,13 @@ class Board extends React.Component {
 
   handleClick(i) {
     const squares = this.state.squares.slice();
+
+    // Do nothing if this square is occupied or if the game is over
+    if (squares[i] || calculateWinner(squares)) {
+      return;
+    }
+
+    // Otherwise, update the square
     squares[i] = this.nextPlayer();
     this.setState({
       squares: squares,
